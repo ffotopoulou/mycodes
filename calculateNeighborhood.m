@@ -13,6 +13,7 @@ function [sequence]=calculateNeighborhood(visibilityMatrix,adjacencyMatrix)
 
 %Author: Foteini Fotopoulou
 %Last revised: 11/6/2016
+
 if nargin <2 %2D case
     
     N=length(visibilityMatrix);

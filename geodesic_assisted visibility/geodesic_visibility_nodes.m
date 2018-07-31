@@ -1,4 +1,4 @@
-%define geodesic visibility matrix using volumetric visibility matrix
+%define geodesic visibility matrix using volumetric visibility measurements
 
 function [geodesic_v_mtx, visibility_paths]=geodesic_visibility_nodes(volumetric_visibility_mtx, elem,node, visibilityRadius,zeroNum)
 
@@ -15,7 +15,7 @@ v_mtx=volumetric_visibility_mtx;
  nodeNo=max(size(node));
         node_A=full(triangulation2adjacency(elem,node));
         
-        visibility_concavity=zeros(nodeNo,nodeNo);%assume all concave
+        visibility_concavity=ones(nodeNo,nodeNo);%assume all convex
         
         visibility_path_cell=cell(nodeNo);
         
@@ -46,6 +46,8 @@ for i=1:nodeNo
             
             
             visibility_concavity(j,i)=visibility_concavity(i,j);
+            visibility_path_cell{j,i}=visibility_path_cell{i,j};
+
         end
     end
 end
